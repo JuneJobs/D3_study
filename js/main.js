@@ -231,7 +231,7 @@ d3.json("data/buildings.json").then(function (data) {
 */
 /*
  * Level 6 : Add some axies label
- */
+ 
 var margin = { left: 100, right: 10, top: 10, bottom: 100 };
 var width = 600 - margin.left - margin.right;
 var height = 400 - margin.top - margin.bottom;
@@ -315,3 +315,4 @@ d3.json("data/buildings.json").then(function (data) {
 }).catch(function (error) {
     console.log(error);
 })
+*/
