@@ -26,7 +26,15 @@ app.use('/data', express.static(__dirname + "/")); //뷰의 스크립트가 따�
 app.get("/", function (req, res) {
     res.sendFile("index.html", { 'root': _path });
 });
+
+app.get("/data/data.csv", function (req, res) {
+    res.sendFile("./js/data/data.csv", { 'root': _path });
+    console.log("file sent");
+});
+
+/*
 app.get("/data/buildings.json", function (req, res) {
     res.sendFile("./js/data/buildings.json", { 'root': _path });
     console.log("file sent");
 });
+*/
