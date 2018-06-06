@@ -28,14 +28,14 @@ d3.csv("data/data.csv").then(function (data) {
     var indTypeChart = dc.barChart("#indType");
     var locTypeChart = dc.barChart("#locType");
  
-
+/*
     var formatDate = d3.time.format("%b %d, %Y");
     var nestByDate = d3.nest()
         .key(function (d) { return d3.time.day(d.date); });
     data.forEach(function (d, i) {
         d.date = parseDate(d.date);
     });
-
+*/
     
  
     var ndx = crossfilter(data);
