@@ -36,7 +36,8 @@ d3.csv("data/data.csv").then(function (data) {
         d.date = parseDate(d.date);
     });
 */
-    
+ 
+//add bar chart
  
     var ndx = crossfilter(data);
     var all = ndx.groupAll();
