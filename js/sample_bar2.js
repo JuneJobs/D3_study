@@ -13,7 +13,8 @@
 /**
  * Step 1: Create the dc.js chart objects
  */
-var fluctuationChart = dc.barChart('#fluctuation-chart');
+var firstChart = dc.barChart('#first-chart');
+var secondChart = dc.barChart('#second-chart');
 var volumeChart = dc.barChart('#monthly-volume-chart');
 
 /**
@@ -39,11 +40,18 @@ d3.csv("data/ndx.csv").then(function (data) {
     });
 
     // Determine a histogram of percent changes
-    var fluctuation = ndx.dimension(function (d) {
+    var first = ndx.dimension(function (d) {
         return d.volume;
     });
-    var fluctuationGroup = fluctuation.group();
-    //fluctuationGroup = getTops(fluctuationGroup);
+    var firstGroup = first.group();
+    firstGroup = getTops(firstGroup);
+
+    // Determine a histogram of percent changes
+    var second = ndx.dimension(function (d) {
+        return d.close;
+    });
+    var secondGroup = second.group();
+    secondGroup = getTops(secondGroup);
 
     // Dimension by month
     var moveMonths = ndx.dimension(function (d) {
@@ -57,38 +65,45 @@ d3.csv("data/ndx.csv").then(function (data) {
      * Step 4 Create the Visualiztations
     */
 
-    fluctuationChart /* dc.barChart('#volume-month-chart', 'chartGroup') */
-        .width(990)
+    firstChart /* dc.barChart('#volume-month-chart', 'chartGroup') */
+        .width(window.screen.width - 200)
         .height(180)
-        .margins({ top: 10, right: 50, bottom: 30, left: 40 })
-        .dimension(fluctuation)
-        .group(fluctuationGroup)
-        .elasticY(true)
-        .centerBar(true)
-        // (_optional_) set gap between bars manually in px, `default=2`
-        //.gap(1)
-        // (_optional_) set filter brush rounding
-        //.round(dc.round.floor)
-        //.alwaysUseRounding(true)
-        //.x(d3.scaleLinear().domain([-25, 25]))
-        //.x.domain([0, fluctuationGroup.all()[0].volume])
-        //.x.domain(data.map(function (d) { return d.volume; }))
-        //.x(d3.scale.ordinal().domain)
-        //.x.domain(data.map(function (d) { return d.volume; }))
-        .x(d3.scaleOrdinal().domain(fluctuation)) 
+        .margins({ top: 10, right: 100, bottom: 30, left: 40 })
+        .dimension(first)
+        .group(firstGroup)
+        .elasticY(true) //.elasticY and .elasticX determine whether the chart should rescale each axis to fit the data.
+        .x(d3.scaleOrdinal().domain(firstGroup))
         .xUnits(dc.units.ordinal)
+        .xAxisLabel("Fisrt Type")
+        .yAxisLabel("First Quantity")
+        .barPadding(0.05)
+        .outerPadding(0.05)
+        //.centerBar(true)
         .renderHorizontalGridLines(true)
-        // Customize the filter displayed in the control span
-        // .filterPrinter(function (filters) {
-        //     var filter = filters[0], s = '';
-        //     s += numberFormat(filter[0]) + '% -> ' + numberFormat(filter[1]) + '%';
-        //     return s;
-        // });
 
-    // Customize axes
-   // fluctuationChart.xAxis().tickFormat(
-    //    function (v) { return v + '%'; });
-    fluctuationChart.yAxis().ticks(5);
+    firstChart.yAxis().ticks(5);
+
+    secondChart /* dc.barChart('#volume-month-chart', 'chartGroup') */
+        .width(window.screen.width - 200)
+        .height(180)
+        .margins({ top: 10, right: 100, bottom: 30, left: 40 })
+        .dimension(first)
+        .group(secondGroup)
+        .elasticY(true) //.elasticY and .elasticX determine whether the chart should rescale each axis to fit the data.
+        .x(d3.scaleOrdinal().domain(secondGroup))
+        .xUnits(dc.units.ordinal)
+        .xAxisLabel("Second Type")
+        .yAxisLabel("Second Quantity")
+        .barPadding(0.05)
+        .outerPadding(0.05)
+        //.centerBar(true)
+        .renderHorizontalGridLines(true)
+
+    secondChart.yAxis().ticks(5);
+
+
+
+
 
     // Determine a histogram of percent changes
     volumeChart.width(990) /* dc.barChart('#monthly-volume-chart', 'chartGroup'); */
@@ -111,20 +126,12 @@ d3.csv("data/ndx.csv").then(function (data) {
 
     //simply call `.renderAll()` to render all charts on the page
     dc.renderAll();
-    /*
-    // Or you can render charts belonging to a specific chart group
-    dc.renderAll('group');
-    // Once rendered you can call `.redrawAll()` to update charts incrementally when the data
-    // changes, without re-rendering everything
-    dc.redrawAll();
-    // Or you can choose to redraw only those charts associated with a specific chart group
-    dc.redrawAll('group');
-    */
+
 });
 function getTops(source_group) {
     return {
         all: function () {
-            return source_group.top(5);
+            return source_group.top(10);
         }
     };
 }
