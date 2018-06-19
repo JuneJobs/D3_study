@@ -152,7 +152,7 @@ d3.csv('ndx.csv').then(function (data) {
             return p;
         },
         function () {
-            return { days: 0, total: 0, avg: 0 };
+            return {days: 0, total: 0, avg: 0};
         }
     );
 
@@ -214,7 +214,7 @@ d3.csv('ndx.csv').then(function (data) {
         .height(250)
         // (_optional_) define chart transition duration, `default = 750`
         .transitionDuration(1500)
-        .margins({ top: 10, right: 50, bottom: 30, left: 40 })
+        .margins({top: 10, right: 50, bottom: 30, left: 40})
         .dimension(yearlyDimension)
         //The bubble chart expects the groups are reduced to multiple values which are used
         //to generate x, y, and radius for each key (bubble) in the group
@@ -223,7 +223,7 @@ d3.csv('ndx.csv').then(function (data) {
         .colors(colorbrewer.RdYlGn[9])
         //(optional) define color domain to match your data domain if you want to bind data or color
         .colorDomain([-500, 500])
-        //##### Accessors
+    //##### Accessors
 
         //Accessor functions are applied to each value returned by the grouping
 
@@ -300,17 +300,17 @@ d3.csv('ndx.csv').then(function (data) {
     // <br>API: [Pie Chart](https://github.com/dc-js/dc.js/blob/master/web/docs/api-latest.md#pie-chart)
 
     gainOrLossChart /* dc.pieChart('#gain-loss-chart', 'chartGroup') */
-        // (_optional_) define chart width, `default = 200`
+    // (_optional_) define chart width, `default = 200`
         .width(180)
-        // (optional) define chart height, `default = 200`
+    // (optional) define chart height, `default = 200`
         .height(180)
-        // Define pie radius
+    // Define pie radius
         .radius(80)
-        // Set dimension
+    // Set dimension
         .dimension(gainOrLoss)
-        // Set group
+    // Set group
         .group(gainOrLossGroup)
-        // (_optional_) by default pie chart will use `group.key` as its label but you can overwrite it with a closure.
+    // (_optional_) by default pie chart will use `group.key` as its label but you can overwrite it with a closure.
         .label(function (d) {
             if (gainOrLossChart.hasFilter() && !gainOrLossChart.hasFilter(d.key)) {
                 return d.key + '(0%)';
@@ -354,7 +354,7 @@ d3.csv('ndx.csv').then(function (data) {
     dayOfWeekChart /* dc.rowChart('#day-of-week-chart', 'chartGroup') */
         .width(180)
         .height(180)
-        .margins({ top: 20, left: 10, right: 10, bottom: 20 })
+        .margins({top: 20, left: 10, right: 10, bottom: 20})
         .group(dayOfWeekGroup)
         .dimension(dayOfWeek)
         // Assign colors to each value in the x scale domain
@@ -379,7 +379,7 @@ d3.csv('ndx.csv').then(function (data) {
     fluctuationChart /* dc.barChart('#volume-month-chart', 'chartGroup') */
         .width(420)
         .height(180)
-        .margins({ top: 10, right: 50, bottom: 30, left: 40 })
+        .margins({top: 10, right: 50, bottom: 30, left: 40})
         .dimension(fluctuation)
         .group(fluctuationGroup)
         .elasticY(true)
@@ -414,17 +414,17 @@ d3.csv('ndx.csv').then(function (data) {
         .width(990)
         .height(200)
         .transitionDuration(1000)
-        .margins({ top: 30, right: 50, bottom: 25, left: 40 })
+        .margins({top: 30, right: 50, bottom: 25, left: 40})
         .dimension(moveMonths)
         .mouseZoomable(true)
-        // Specify a "range chart" to link its brush extent with the zoom of the current "focus chart".
+    // Specify a "range chart" to link its brush extent with the zoom of the current "focus chart".
         .rangeChart(volumeChart)
         .x(d3.scaleTime().domain([new Date(1985, 0, 1), new Date(2012, 11, 31)]))
         .round(d3.timeMonth.round)
         .xUnits(d3.timeMonths)
         .elasticY(true)
         .renderHorizontalGridLines(true)
-        //##### Legend
+    //##### Legend
 
         // Position the legend relative to the chart origin and specify items' height and separation.
         .legend(dc.legend().x(800).y(10).itemHeight(13).gap(5))
@@ -456,7 +456,7 @@ d3.csv('ndx.csv').then(function (data) {
     // will always match the zoom of the area chart.
     volumeChart.width(990) /* dc.barChart('#monthly-volume-chart', 'chartGroup'); */
         .height(40)
-        .margins({ top: 0, right: 50, bottom: 20, left: 40 })
+        .margins({top: 0, right: 50, bottom: 20, left: 40})
         .dimension(moveMonths)
         .group(volumeByMonthGroup)
         .centerBar(true)

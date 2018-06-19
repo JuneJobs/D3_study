@@ -26,15 +26,33 @@
     <h1>test bed</h1>
     <div id="indType"></div>
     <div id="locType"></div>
+    </div>
+    <!-- External JS libraries -->
+    <div id="fluctuation-chart">
+        <strong>Days by Fluctuation(%)</strong>
+        <span class="reset" style="display: none;">range:
+            <span class="filter"></span>
+        </span>
+        <a class="reset" href="javascript:fluctuationChart.filterAll();dc.redrawAll();" style="display: none;">reset</a>
+
+        <div class="clearfix"></div>
+    </div>
     <div id="monthly-volume-chart">
+        <strong>Days by Data amount</strong>
+        <span class="reset" style="display: none;">range:
+            <span class="filter"></span>
+        </span>
+        <a class="reset" href="javascript:volumeChart.filterAll();dc.redrawAll();" style="display: none;">reset</a>
+
+        <div class="clearfix"></div>
     </div>
 
 <!-- External JS libraries -->
-<script src="./js/lib/crossfilter.js"></script>
 <script src="./js/lib/d3.js"></script>
-<script src="./js/lib/dc.js"></script>
+<script src="./js/lib/crossfilter.js"></script>
+<script src="./js/lib/dc.min.js"></script>
 <!-- Custom JS -->
-<script src="./js/sample.js"></script>
+<script src="./js/sample_bar2.js"></script>
 
 </body>
 </html>

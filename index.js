@@ -27,8 +27,8 @@ app.get("/", function (req, res) {
     res.sendFile("index.html", { 'root': _path });
 });
 
-app.get("/data/data.csv", function (req, res) {
-    res.sendFile("./js/data/data.csv", { 'root': _path });
+app.get("/data/ndx.csv", function (req, res) {
+    res.sendFile("./js/data/ndx.csv", { 'root': _path });
     console.log("file sent");
 });
 
