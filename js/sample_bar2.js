@@ -87,7 +87,7 @@ d3.csv("data/ndx.csv").then(function (data) {
         .width(window.screen.width - 200)
         .height(180)
         .margins({ top: 10, right: 100, bottom: 30, left: 40 })
-        .dimension(first)
+        .dimension(second)
         .group(secondGroup)
         .elasticY(true) //.elasticY and .elasticX determine whether the chart should rescale each axis to fit the data.
         .x(d3.scaleOrdinal().domain(secondGroup))
